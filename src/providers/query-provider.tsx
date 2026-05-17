@@ -6,7 +6,8 @@ import {
 } from '@tanstack/react-query';
 import type { PropsWithChildren } from 'react';
 
-const queryClient = new QueryClient({
+// eslint-disable-next-line react-refresh/only-export-components
+export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
       // Used for error logging, debugging, monitoring
