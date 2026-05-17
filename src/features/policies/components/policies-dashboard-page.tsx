@@ -1,3 +1,3 @@
 export default function PoliciesDashboardPage() {
-  return <div>Policies Dashboard page</div>;
+  return <div>Dashboard page</div>;
 }

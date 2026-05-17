@@ -2,11 +2,11 @@ import { Route } from '../../../routes/dashboard';
 
 import type { ParamsType } from '../types';
 
-export function useSearchParams() {
-  const search = Route.useSearch();
+export function useParams() {
+  const params = Route.useSearch();
   const navigate = Route.useNavigate();
 
-  const updateSearch = (
+  const updateParams = (
     updater: (previous: ParamsType) => ParamsType,
 
     options?: {
@@ -20,7 +20,7 @@ export function useSearchParams() {
   };
 
   return {
-    search,
-    updateSearch,
+    params,
+    updateParams,
   };
 }
