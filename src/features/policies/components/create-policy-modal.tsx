@@ -1,9 +1,17 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useModalState } from '../hooks/use-search-params';
+import { useCreateModalState } from '../hooks/use-search-params';
+import { useCreatePolicyMutation } from '../hooks/use-create-policy-mutation';
+import PolicyForm from './policy-form';
+import type { PolicyPayload } from '../types';
 
 export default function CreatePolicyModal() {
-  const { isOpen, updateParams } = useModalState();
+  const { isOpen, updateParams } = useCreateModalState();
+  const { mutateAsync } = useCreatePolicyMutation();
+
+  const onSubmit = async (policyPayload: PolicyPayload) => {
+    mutateAsync(policyPayload);
+  };
 
   function closeCreatePolicyDialog() {
     updateParams((previousParams) => {
@@ -11,12 +19,14 @@ export default function CreatePolicyModal() {
     });
   }
 
-  console.log('Modal Component Rerendered!');
-
   return (
     <Dialog open={isOpen} onClose={closeCreatePolicyDialog}>
       <DialogTitle sx={{ m: 0, p: 3 }}>Create Policy</DialogTitle>
-      <div style={{ padding: '24px' }}>Create policy modal</div>
+      <PolicyForm
+        closeHandler={closeCreatePolicyDialog}
+        onSubmitHandler={onSubmit}
+      />
+      ;
     </Dialog>
   );
 }

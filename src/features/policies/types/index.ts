@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { REGIONS, REVIEW_TYPES, SEVERITIES } from '../constants';
-import type { paramsSchema } from '../schemas';
+import type {
+  paramsSchema,
+  policyFormSchema,
+  pendingReviewSchema,
+} from '../schemas';
 
 export interface Account {
   name: string;
@@ -69,3 +73,7 @@ export type ReviewType = (typeof REVIEW_TYPES)[number];
 export type SeverityType = (typeof SEVERITIES)[number];
 
 export type ParamsType = z.infer<typeof paramsSchema>;
+
+export type PolicyFormProps = z.infer<typeof policyFormSchema>;
+
+export type PendingReview = z.infer<typeof pendingReviewSchema>;

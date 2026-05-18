@@ -35,8 +35,8 @@ export function useTableFilters() {
   };
 }
 
-// Specialized hook for the Modal component
-export function useModalState() {
+// Specialized hook for the Create Modal component
+export function useCreateModalState() {
   const updateParams = useUpdateParams();
 
   const createModal = Route.useSearch({
@@ -45,6 +45,20 @@ export function useModalState() {
 
   return {
     isOpen: !!createModal,
+    updateParams,
+  };
+}
+
+// Specialized hook for the Edit Modal component
+export function useEditModalState() {
+  const updateParams = useUpdateParams();
+
+  const editPolicyId = Route.useSearch({
+    select: (search) => search.editPolicyId,
+  });
+
+  return {
+    isOpen: !!editPolicyId,
     updateParams,
   };
 }

@@ -8,7 +8,9 @@ import { formatCurrency, formatDate, calculateRiskColor } from '../utils';
 import InfoItem from './info-item';
 import Reviews from './reviews';
 import RiskBadge from './risk-badge';
+import EditPolicyModal from './edit-policy-modal';
 import usePolicyQuery from '../hooks/use-policy-query';
+import { useEditModalState } from '../hooks/use-search-params';
 
 interface DetailedPolicyProps {
   policyID: string;
@@ -16,6 +18,13 @@ interface DetailedPolicyProps {
 
 export default function DetailedPolicy({ policyID }: DetailedPolicyProps) {
   const { data: policy } = usePolicyQuery(policyID);
+  const { updateParams } = useEditModalState();
+
+  function editHandler() {
+    updateParams((previousParams) => {
+      return { ...previousParams, editPolicyId: policyID };
+    });
+  }
 
   return (
     <>
@@ -200,13 +209,15 @@ export default function DetailedPolicy({ policyID }: DetailedPolicyProps) {
                   userSelect: 'none',
                 }}
               >
-                <Button>Edit</Button>
+                <Button onClick={editHandler}>Edit</Button>
               </Stack>
             </Stack>
             <Reviews reviewList={policy.compliance.pendingReviews} />
           </Stack>
         </Stack>
       </Box>
+
+      <EditPolicyModal policy={policy} />
     </>
   );
 }

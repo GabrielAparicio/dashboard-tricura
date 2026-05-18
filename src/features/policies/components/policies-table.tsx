@@ -19,8 +19,6 @@ export default function PoliciesTable() {
   } = usePoliciesQuery();
   const { updateParams } = useTableFilters();
 
-  console.log('Table rerendered!');
-
   return (
     <>
       <Paper

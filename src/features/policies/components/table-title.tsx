@@ -1,10 +1,10 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useModalState } from '../hooks/use-search-params';
+import { useCreateModalState } from '../hooks/use-search-params';
 
 export default function TableTitle() {
-  const { updateParams } = useModalState();
+  const { updateParams } = useCreateModalState();
 
   function openCreatePolicyDialog() {
     updateParams((previousParams) => {
