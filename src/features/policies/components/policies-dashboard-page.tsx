@@ -1,3 +1,5 @@
+import PoliciesSection from './policies-section';
+
 export default function PoliciesDashboardPage() {
-  return <div>Dashboard page</div>;
+  return <PoliciesSection />;
 }

@@ -9,6 +9,7 @@ export const router = createRouter({
   },
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
+  defaultStructuralSharing: true,
   scrollRestoration: true,
 });
 
