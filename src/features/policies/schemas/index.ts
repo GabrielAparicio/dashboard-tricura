@@ -1,5 +1,5 @@
 import z from 'zod';
-import { REGIONS, REVIEW_TYPES, SEVERITIES } from '../constants';
+import { REGIONS, REVIEW_TYPES, SEVERITIES, RANGE_MAX } from '../constants';
 
 export const paramsSchema = z.object({
   page: z.number().catch(1).default(1),
@@ -16,6 +16,7 @@ export const paramsSchema = z.object({
   claimsTotalMax: z.number().optional(),
   expandedPolicyId: z.string().optional(),
   createModal: z.boolean().optional(),
+  filtersModal: z.boolean().optional(),
   editPolicyId: z.string().optional(),
 });
 
@@ -38,3 +39,78 @@ export const policyFormSchema = z.object({
   expiredDocuments: z.number().min(0),
   pendingReviews: z.array(pendingReviewSchema),
 });
+
+export const filtersFormSchema = z
+  .object({
+    region: z.enum(REGIONS).optional(),
+    effectiveDateRange: z.object({
+      from: z.date().nullable().optional(),
+      to: z.date().nullable().optional(),
+    }),
+    premiumRange: z.object({
+      min: z.number().min(0).optional(),
+      max: z.number().max(RANGE_MAX).optional(),
+    }),
+    claimsTotalRange: z.object({
+      min: z.number().min(0).optional(),
+      max: z.number().max(RANGE_MAX).optional(),
+    }),
+    reimbursementRiskRange: z.object({
+      min: z.number().min(0).max(1).optional(),
+      max: z.number().min(0).max(1).optional(),
+    }),
+  })
+  .superRefine((data, ctx) => {
+    const validateRange = (
+      range:
+        | {
+            min?: number;
+            max?: number;
+          }
+        | undefined,
+      path: string[],
+    ) => {
+      if (
+        range?.min !== undefined &&
+        range?.max !== undefined &&
+        range.min > range.max
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Min cannot be greater than Max',
+          path,
+        });
+      }
+    };
+
+    validateRange(data.premiumRange, ['premiumRange']);
+    validateRange(data.claimsTotalRange, ['claimsTotalRange']);
+    validateRange(data.reimbursementRiskRange, ['reimbursementRiskRange']);
+
+    const from = data.effectiveDateRange?.from;
+    const to = data.effectiveDateRange?.to;
+
+    if (from && !to) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'To date is required when From date is provided',
+        path: ['effectiveDateRange', 'to'],
+      });
+    }
+
+    if (to && !from) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'From date is required when To date is provided',
+        path: ['effectiveDateRange', 'from'],
+      });
+    }
+
+    if (from && to && from > to) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'From date cannot be after To date',
+        path: ['effectiveDateRange'],
+      });
+    }
+  });

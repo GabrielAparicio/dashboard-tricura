@@ -18,3 +18,5 @@ export const REVIEW_TYPES = [
 ] as const;
 
 export const SEVERITIES = ['low', 'medium', 'high', 'critical'] as const;
+
+export const RANGE_MAX = 1_000_000;

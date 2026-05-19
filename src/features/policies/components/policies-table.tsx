@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import { usePoliciesQuery } from '../hooks/use-policies-query';
-import { useTableFilters } from '../hooks/use-search-params';
+import { useTablePagination } from '../hooks/use-search-params';
 import CreatePolicyModal from './create-policy-modal';
 import PolicyRow from './policy-row';
 import { startTransition } from 'react';
@@ -17,7 +17,7 @@ export default function PoliciesTable() {
   const {
     data: { data: policies, pagination },
   } = usePoliciesQuery();
-  const { updateParams } = useTableFilters();
+  const { updateParams } = useTablePagination();
 
   return (
     <>

@@ -4,6 +4,7 @@ import type {
   paramsSchema,
   policyFormSchema,
   pendingReviewSchema,
+  filtersFormSchema,
 } from '../schemas';
 
 export interface Account {
@@ -77,3 +78,5 @@ export type ParamsType = z.infer<typeof paramsSchema>;
 export type PolicyFormProps = z.infer<typeof policyFormSchema>;
 
 export type PendingReview = z.infer<typeof pendingReviewSchema>;
+
+export type PolicyFormFilters = z.infer<typeof filtersFormSchema>;
