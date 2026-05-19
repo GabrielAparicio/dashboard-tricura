@@ -6,13 +6,11 @@ import { formatDate } from '../utils';
 export function useUpdateParams() {
   const navigate = Route.useNavigate();
 
-  const updateParams = (
-    updater: (previous: ParamsType) => ParamsType,
-    options?: { replace?: boolean },
-  ) => {
+  const updateParams = (updater: (previous: ParamsType) => ParamsType) => {
     navigate({
       search: updater,
-      replace: options?.replace ?? true,
+      replace: true,
+      resetScroll: false,
     });
   };
 

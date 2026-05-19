@@ -1,5 +1,5 @@
 import { Route } from '../../../routes/dashboard';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { policiesKeys } from '../api/policy-query-keys';
 import { getPolicies } from '../api/get-policies';
 
@@ -21,8 +21,9 @@ export function usePoliciesQuery() {
     }),
   });
 
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: policiesKeys.list(params),
     queryFn: () => getPolicies(params),
+    placeholderData: keepPreviousData,
   });
 }

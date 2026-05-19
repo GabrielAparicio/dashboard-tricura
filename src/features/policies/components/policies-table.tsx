@@ -11,13 +11,22 @@ import { usePoliciesQuery } from '../hooks/use-policies-query';
 import { useTablePagination } from '../hooks/use-search-params';
 import CreatePolicyModal from './create-policy-modal';
 import PolicyRow from './policy-row';
-import { startTransition } from 'react';
 
 export default function PoliciesTable() {
-  const {
-    data: { data: policies, pagination },
-  } = usePoliciesQuery();
+  const { data, isLoading } = usePoliciesQuery();
   const { updateParams } = useTablePagination();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const policies = data?.data ?? [];
+  const pagination = data?.pagination ?? {
+    page: 1,
+    limit: 20,
+    total: 0,
+    totalPages: 0,
+  };
 
   return (
     <>
@@ -109,24 +118,20 @@ export default function PoliciesTable() {
           count={pagination.total}
           rowsPerPageOptions={[10, 20, 50, 100]}
           onPageChange={(_event, page) => {
-            startTransition(() => {
-              updateParams((previousParams) => {
-                return {
-                  ...previousParams,
-                  page: page + 1,
-                };
-              });
+            updateParams((previousParams) => {
+              return {
+                ...previousParams,
+                page: page + 1,
+              };
             });
           }}
           onRowsPerPageChange={(event) => {
-            startTransition(() => {
-              updateParams((previousParams) => {
-                return {
-                  ...previousParams,
-                  limit: Number(event.target.value),
-                  page: 1,
-                };
-              });
+            updateParams((previousParams) => {
+              return {
+                ...previousParams,
+                limit: Number(event.target.value),
+                page: 1,
+              };
             });
           }}
         />
