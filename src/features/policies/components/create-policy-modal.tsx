@@ -21,8 +21,9 @@ export default function CreatePolicyModal() {
 
   return (
     <Dialog open={isOpen} onClose={closeCreatePolicyDialog}>
-      <DialogTitle sx={{ m: 0, p: 3 }}>Create Policy</DialogTitle>
+      <DialogTitle sx={{ m: 0, p: 3 }}>Create New Policy</DialogTitle>
       <PolicyForm
+        submitLabel="Create Policy"
         closeHandler={closeCreatePolicyDialog}
         onSubmitHandler={onSubmit}
       />

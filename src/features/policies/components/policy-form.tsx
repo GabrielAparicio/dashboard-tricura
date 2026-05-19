@@ -106,12 +106,14 @@ function NumberInput({
 
 interface PolicyFormComponentProps {
   policy?: Policy;
+  submitLabel: string;
   onSubmitHandler: (policyPayload: PolicyPayload) => Promise<void>;
   closeHandler: () => void;
 }
 
 export default function PolicyForm({
   policy,
+  submitLabel,
   closeHandler,
   onSubmitHandler,
 }: PolicyFormComponentProps) {
@@ -502,7 +504,7 @@ export default function PolicyForm({
           </Button>
 
           <Button type="submit" variant="contained">
-            Create Policy
+            {submitLabel}
           </Button>
         </Box>
       </Box>

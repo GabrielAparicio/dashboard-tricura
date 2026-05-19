@@ -28,6 +28,7 @@ export default function EditPolicyModal({ policy }: EditPolicyModalProps) {
     <Dialog open={isOpen} onClose={closeEditPolicyDialog}>
       <DialogTitle sx={{ m: 0, p: 3 }}>Edit Policy</DialogTitle>
       <PolicyForm
+        submitLabel="Save Changes"
         policy={policy}
         closeHandler={closeEditPolicyDialog}
         onSubmitHandler={onSubmit}

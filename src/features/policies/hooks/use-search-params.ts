@@ -1,5 +1,6 @@
 import { Route } from '../../../routes/dashboard';
 import type { ParamsType } from '../types';
+import { formatDate } from '../utils';
 
 // Base hook
 export function useUpdateParams() {
@@ -90,7 +91,7 @@ export function useTableFilters() {
   ) {
     activeFilters.push({
       label: 'Effective',
-      value: `${filters.effectiveDateFrom} - ${filters.effectiveDateTo}`,
+      value: `${formatDate(filters.effectiveDateFrom)} - ${formatDate(filters.effectiveDateTo)}`,
       deleteHandler: () =>
         updateParams((previous) => ({
           ...previous,
