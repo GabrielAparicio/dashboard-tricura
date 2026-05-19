@@ -84,6 +84,7 @@ Backend expected at: http://localhost:4000
 
 - Filtering by region was implemented, but checkboxes were replaced by radio inputs due to the fact the backend only supports one region as a query param
 - The designs indicated that multiple regions could be used to filter policies but the backend didn't support this feature, a workaround on the frontend could have been implemented but the best practice for this kind of case is to let the backend handle it. I could go back to checkboxes as soon as the backend supports multiple regions.
+- I added a function, based on personal research, to calculate days until renewal on the frontend, but I'd like to revisit the actual logic used to calculate this value.
 
 
 ## Things to improve with more time
