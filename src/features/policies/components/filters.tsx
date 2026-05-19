@@ -66,23 +66,3 @@ export default function Filters() {
     </>
   );
 }
-
-/*
-<Button
-            variant="outlined"
-            startIcon={<SettingsIcon />}
-            onClick={openDialog}
-          >
-            Filters
-            {activeFiltersCount > 0 ? ` ${activeFiltersCount}` : ''}
-          </Button>
-
-          <ActiveFilters
-            filters={filters}
-            onDeleteRegion={handleDeleteRegion}
-            onDeleteEffectiveDate={handleDeleteEffectiveDate}
-            onDeleteRisk={handleDeleteRisk}
-            onDeletePremium={handleDeletePremium}
-            onDeleteClaims={handleDeleteClaims}
-          />
-*/

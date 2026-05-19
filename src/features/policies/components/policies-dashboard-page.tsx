@@ -5,7 +5,7 @@ import TableTitle from './table-title.tsx';
 
 export default function PoliciesDashboardPage() {
   return (
-    <ErrorBoundary fallback={<div>Something went wrong with the table...</div>}>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <PoliciesToolbar />
       <TableTitle />
       <PoliciesTable />

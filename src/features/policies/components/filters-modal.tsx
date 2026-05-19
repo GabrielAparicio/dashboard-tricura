@@ -21,40 +21,11 @@ export default function FiltersModal() {
 
   return (
     <Dialog open={isOpen} onClose={closeFiltersDialog}>
-      <DialogTitle sx={{ m: 0, p: 3 }}>Create Policy</DialogTitle>
+      <DialogTitle sx={{ m: 0, p: 3 }}>Filters</DialogTitle>
       <FiltersForm
         closeDialog={closeFiltersDialog}
         onFiltersChange={onSubmit}
       />
-      ;
     </Dialog>
   );
 }
-
-/*
-export default function CreatePolicyModal() {
-  const { isOpen, updateParams } = useCreateModalState();
-  const { mutateAsync } = useCreatePolicyMutation();
-
-  const onSubmit = async (policyPayload: PolicyPayload) => {
-    mutateAsync(policyPayload);
-  };
-
-  function closeCreatePolicyDialog() {
-    updateParams((previousParams) => {
-      return { ...previousParams, createModal: undefined };
-    });
-  }
-
-  return (
-    <Dialog open={isOpen} onClose={closeCreatePolicyDialog}>
-      <DialogTitle sx={{ m: 0, p: 3 }}>Create Policy</DialogTitle>
-      <PolicyForm
-        closeHandler={closeCreatePolicyDialog}
-        onSubmitHandler={onSubmit}
-      />
-      ;
-    </Dialog>
-  );
-}
-*/

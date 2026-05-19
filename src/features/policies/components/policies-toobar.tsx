@@ -1,8 +1,11 @@
 import Stack from '@mui/material/Stack';
 import SearchInput from './search-input';
 import Filters from './filters';
+import { usePoliciesQuery } from '../hooks/use-policies-query';
 
 export default function PoliciesToolbar() {
+  const { isLoading } = usePoliciesQuery();
+
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}
@@ -13,6 +16,10 @@ export default function PoliciesToolbar() {
         borderRadius: 3,
         px: 1,
         py: 1,
+        pointerEvents: isLoading ? 'none' : 'auto',
+        cursor: isLoading ? 'not-allowed' : 'auto',
+        userSelect: isLoading ? 'none' : 'auto',
+        opacity: isLoading ? 0.4 : 1,
       }}
       spacing={2}
     >

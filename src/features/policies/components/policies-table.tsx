@@ -11,13 +11,14 @@ import { usePoliciesQuery } from '../hooks/use-policies-query';
 import { useTablePagination } from '../hooks/use-search-params';
 import CreatePolicyModal from './create-policy-modal';
 import PolicyRow from './policy-row';
+import TableSkeleton from './table-skeleton';
 
 export default function PoliciesTable() {
   const { data, isLoading } = usePoliciesQuery();
   const { updateParams } = useTablePagination();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <TableSkeleton />;
   }
 
   const policies = data?.data ?? [];
