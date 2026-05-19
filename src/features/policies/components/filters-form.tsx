@@ -79,7 +79,6 @@ export default function FiltersForm({
     console.log('Form filters: ', filters);
     const filterParams = convertFormFiltersToParams(filters);
     onFiltersChange(filterParams);
-    // onFiltersChange(filters);
     closeDialog();
   };
 

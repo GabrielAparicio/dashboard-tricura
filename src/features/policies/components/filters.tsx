@@ -19,16 +19,18 @@ export default function Filters() {
     <>
       <Stack
         direction={{ xs: 'column', md: 'row' }}
-        spacing={2}
+        spacing={1}
         sx={{ width: '100%' }}
       >
         <Button
           variant="outlined"
           startIcon={<SettingsIcon />}
           onClick={openFilterModalHandler}
+          sx={{
+            flexShrink: 0,
+          }}
         >
-          Filters
-          {activeFiltersCount > 0 ? ` ${activeFiltersCount}` : ''}
+          Filters {activeFiltersCount > 0 ? ` ${activeFiltersCount}` : ''}
         </Button>
 
         <Stack
@@ -54,10 +56,7 @@ export default function Filters() {
             ))}
           </Stack>
 
-          <Button
-            sx={{ flex: 2, flexWrap: 'nowrap' }}
-            onClick={clearAllFilters}
-          >
+          <Button sx={{ flex: 1 }} onClick={clearAllFilters} variant="outlined">
             Clear all
           </Button>
         </Stack>

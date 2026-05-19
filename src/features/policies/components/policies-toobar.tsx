@@ -7,8 +7,12 @@ export default function PoliciesToolbar() {
     <Stack
       direction={{ xs: 'column', md: 'row' }}
       sx={{
-        width: '100%',
         alignItems: { xs: 'stretch', md: 'center' },
+        border: 1,
+        borderColor: 'grey.300',
+        borderRadius: 3,
+        px: 1,
+        py: 1,
       }}
       spacing={2}
     >
