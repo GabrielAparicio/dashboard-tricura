@@ -1,19 +1,27 @@
-# React + TypeScript + Vite
+# Policy Review Dashboard - Frontend Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an implementation of the frontend assessment for Tricura Insurance Group.
 
-Currently, two official plugins are available:
+## Setup instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Clone and run the project:
 
-## React Compiler
+```
+git clone git@github.com:GabrielAparicio/dashboard-tricura.git
+npm i && npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Assumptions
 
-## Expanding the ESLint configuration
+Backend is running on http://localhost:4000
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tradeoffs or decisions to revisit
+
+If you are
+
+## Things to improve with more time
+
+If you are
 
 
 
